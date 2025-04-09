@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <link rel="stylesheet" href="css/register.css">
+  <body>
+    <!-- <form action="http://localhost:5000/register" method="post"> -->
+    <div class="box">
+      <h1 class="h1">register</h1>
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter username"
+        required
+      /><br />
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        required
+      /><br />
+      <button type="submit" onclick="submitdata()">Login</button>
+      <p>
+        do you have account
+        <a href="http://localhost:3000/login">login</a>
+      </p>
+    </div>
+    <!-- </form> -->
+  </body>
+
+  <script>
+    async function submitdata() {
+      username = document.getElementById("username").value;
+      passowrod = document.getElementById("password").value;
+
+      if (!username || !passowrod) {
+        alert("fill up all form");
+        return (window.location.href = "register.html");
+      }
+      try {
+        await fetch("http://localhost:3000/alluser", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: username, password: passowrod }),
+        });
+
+        alert("you now regster!");
+        // window.location.href = "login.html";
+      } catch {
+        console.error("eroor inserting data");
+        // window.location.href = "resgister.html";
+      }
+    }
+  </script>
+</html>

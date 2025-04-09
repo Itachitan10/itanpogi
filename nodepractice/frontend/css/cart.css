@@ -1,0 +1,90 @@
+img { 
+  height: 200px;
+  max-width: 100%; /* Para hindi lumagpas sa container */
+}
+
+.menu-items { 
+  border: 1px solid pink;
+  text-align: center;
+  width: 100%; /* Para mag-adjust sa screen */
+  max-width: 300px;
+  padding-top: 30px;
+  box-shadow: 1px 5px 20px;
+  border-radius: 10px;
+  margin: auto;
+}
+
+button { 
+  height: 30px;
+  box-shadow: 5px 5px 5px rgb(78, 77, 75);
+  border-radius: 5px;
+  background-color: #de4848;
+  color: #939381;
+  font-size: 15px;
+  margin-bottom: 30px;
+  color: rgb(250, 249, 247);
+}
+
+#cart-items {
+  margin: 0%;
+
+  display: flex;
+  flex-wrap: wrap; /* Para mag-wrap sa mobile */
+  gap: 15px;
+  width: 100%px;
+  justify-content: center; /* Center items */
+
+
+
+}
+
+/* ✅ Mobile-Friendly Styles */
+@media (max-width: 768px) {
+  #cart-items {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+  }
+  
+  .menu-items {
+    width: 90%; /* Mas malapad para sa mobile */
+    max-width: 350px;
+  }
+
+  button {
+    width: 40%; /* Full-width buttons */
+    font-size: 20px;
+    border: none;
+  }
+}
+
+.checkout{ 
+  font-size: px;
+  background-color: yellow;
+  color: rgb(16, 15, 15);
+  font-family: 10px;
+  font-size: medium;
+  border: none;
+}
+
+/* ✅ Tablet View (2 items per row) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #cart-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+ 
+  }
+}
+.count-box{ 
+  width: 50%;
+  border: 1px solid black;
+  color: blue;
+  text-align: center;
+  font-size: 20px;
+  text-align: center;
+ 
+}
+#total-price{ 
+  padding-top: 10vh;
+  padding-bottom: 5px;
+  text-align: center;
+}

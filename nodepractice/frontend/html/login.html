@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class='box'>
+        <h1 class="h1">Login</h1>
+        <p id="message"></p>
+        <input id="username"  type="text" name="username1" placeholder="Enter username" required><br>
+        <input id="password" type="password" name="password1" placeholder="Enter password" required><br>
+        <button type="submit" onclick="login()">Login</button>
+        <p>Register
+            <a href="http://localhost:3000/registerform">here</a>
+        </p>
+        <div id="message"></div>
+    </div> 
+    <script>
+
+
+async function login(){
+  const username1 = document.getElementById("username").value;
+  const password1 = document.getElementById("password").value;
+
+  
+  if(!username1 || !password1){ 
+    alert('pls inter username and password');
+    document.getElementById('message').innerText ='pls enter password or username';
+  }else
+    try {
+    response = await fetch("http://localhost:4000/login1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ username1, password1 }),
+    });   
+    if (response.ok) {
+      setTimeout(() => {
+        // window.location.href='dash.html'
+      }, 2000);
+      alert("hellow welcome ", username1)
+    } else {
+      messageDiv.textContent = "Invalid username or password";
+      //  window.location.href='login.html'
+    }
+  } catch (error) {
+    alert("Invalid username or password")
+
+  }
+}
+
+    </script>
+</body>
+</html>
