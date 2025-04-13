@@ -46,7 +46,7 @@ app.use('/', dash)
 app.get("/", (req, res) => {
   res.send("Welcome kay ItanPogi API 😎");
   // OR:
-  // res.sendFile(path.join(__dirname, "frontend/html/index.html"));
+  res.sendFile(path.join(__dirname, "frontend/html/index.html"));
 });
 
 
