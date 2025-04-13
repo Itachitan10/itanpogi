@@ -40,7 +40,7 @@ const cart = require("./backend/routes/cart");
 app.use("/", front);
 app.use("/", login);
 app.use("/", cart);
-app.use('/', dash)
+app.use("/", dash)
 
 // server
 
