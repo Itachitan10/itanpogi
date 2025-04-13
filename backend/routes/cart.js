@@ -3,9 +3,9 @@ const routes = express.Router();
 // const path = require('path')
 
 
-// routes.get("/cart", (req, res) => {
-//   res.sendFile(path.join(__dirname,"/frontend/html/cart.html"))
-// });
+routes.get("/cart", (req, res) => {
+  res.render('cart')
+});
 
 const conn = require('../database/db')
 

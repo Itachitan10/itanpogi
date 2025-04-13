@@ -4,9 +4,9 @@ const routes = express.Router();
 
 const conn = require("../database/db");
 
-// routes.get("/register", (req, res) => {
-//   res.sendFile(path.join(__dirname, '/frontend/html/register.html'))
-// });
+routes.get("/register", (req, res) => {
+  res.render('register')
+});
 
 const  sql1 = [];
 routes.post("/alluser", async(req, res) => {
