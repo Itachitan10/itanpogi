@@ -1,11 +1,12 @@
 const express = require("express");
 const routes = express.Router();
+// const path = require('path')
 
 const conn = require("../database/db");
 
-routes.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/html/register.html'))
-});
+// routes.get("/register", (req, res) => {
+//   res.sendFile(path.join(__dirname, '/frontend/html/register.html'))
+// });
 
 const  sql1 = [];
 routes.post("/alluser", async(req, res) => {

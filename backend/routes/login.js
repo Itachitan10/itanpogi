@@ -1,12 +1,13 @@
 const express = require ("express")
 const routes =express.Router()
+// const path = require('path')
 
 const conn = require('../database/db')
 
 // login page
-routes.get("/login", (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/html/login.html'))
-});
+// routes.get("/login", (req, res) => {
+//     res.sendFile(path.join(__dirname, '/frontend/html/login.html'))
+// });
 
 // login comparision database
 routes.post('/login1' , async (req, res )=>{

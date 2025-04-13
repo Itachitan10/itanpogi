@@ -37,8 +37,20 @@ app.use("/", login);
 app.use("/", cart);
 app.use('/', dash)
 
+// server
+app.get("/register", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/html/register.html"));
+});
 
-
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/html/login.html"));
+});
+app.get("/dashboard", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/html/dash.html"));
+});
+app.get("/cart", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/html/cart.html"));
+});
 
  const port = process.env.PORT || 3000;
 app.listen(port, (err) => {
