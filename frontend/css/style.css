@@ -147,10 +147,13 @@
     color: #333;
   }
   
-  .item button {
-    background-color:yellow;
+  
+  .add{
+    font-style: italic;
+    box-shadow: 1px 1px 2px 1px hsla(261, 69%, 38%, 0.985);
+    background-color:rgb(222, 224, 224);
     font-weight: bolder;
-    color: rgb(10, 1, 1);
+    color: rgb(11, 11, 11);
     border: none;
     padding: 10px 15px;
     border-radius: 10px;
@@ -202,4 +205,23 @@
   color: white;
   font-size: 15px;
   
+}
+
+.checkout{ 
+  font-style: italic;
+  box-shadow: 1px 1px 2px 1px hsla(261, 100%, 3%, 0.985);
+  margin-bottom: 10px;
+  width: 100px;
+  font-weight: bolder;
+  background-color: yellow;
+  font-weight: bolder;
+  color: rgb(10, 1, 1);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 10px 10px 10x 10px;
+
+
 }

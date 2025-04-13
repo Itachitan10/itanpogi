@@ -2,7 +2,7 @@
 
 var count1 = 0;
 totalr = document.getElementById("total-price");
-fetch("http://localhost:3000/",)
+fetch("http://localhost:3000/item_cart")
   .then((response) => response.json())
   .then((data) => {
     form(data);
@@ -17,7 +17,7 @@ function form(data) {
          <img src="${item.img}" alt="${item.name}">
          <h3>${item.name}</h3>
          <p id="price">PESOS :${item.price}</p>
-         <input    data-id="${item.id}"    class='button1' data-index="${index}"    type="checkbox">
+         <input    data-id="${item.id}"    class='button1' data-index="${index}"type="checkbox">
 <button class="remove_btn" data-id="${item.id}">remove</button>
            <button class="checkout">check out</button>`;
     document.getElementById("cart-items").innerHTML += section;
@@ -27,7 +27,7 @@ function form(data) {
 
 
 
-
+// this function is delete all item
 
   document.querySelectorAll(".button1").forEach((Element) => {
     Element.addEventListener("click", (e) => {
@@ -84,20 +84,6 @@ function form(data) {
   
 
   del();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   document.querySelectorAll(".button1").forEach((Element) => {
     Element.addEventListener("click", (e) => {
       id = e.target.dataset.index;
@@ -123,6 +109,9 @@ function form(data) {
   });
 }
 
+
+
+// this function is delete one item
 function delete1(id) {
   fetch(`http://localhost:3000/delete/${id}`, {
     method: "DELETE",
@@ -149,6 +138,7 @@ function delete1(id) {
 }
 
 function display1() {
+  window.location.reload();
   alert("are you sure to remove this item");
-  window.location.href = "cart.html";
+ 
 }

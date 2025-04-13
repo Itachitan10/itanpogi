@@ -7,16 +7,20 @@ routes.get("/registerform", (req , res, next)=>{
     res.render('register')
 })
 
+const  sql1 = [];
 routes.post("/alluser", async(req, res) => {
  const {username , password } = req.body;
 
   console.log(username , password);
-  const sql = await conn(`INSERT INTO information (username , password) VALUES("${username}" , "${password}")`);
+  const sql1 = await conn(`INSERT INTO information (username , password) VALUES("${username}" , "${password}")`);
+
   if(sql){ 
     res.send('successfull  inserting data')
   }else{ 
     res.send('failed inserting data')
   }
 });
+
+
 
 module.exports = routes;

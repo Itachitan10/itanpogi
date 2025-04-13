@@ -11,15 +11,16 @@ const dbconfig = {
 
 const conn = mysql.createConnection(dbconfig);
 
-module.exports = async (data) => { 
-    return new Promise((resolve, reject) => { 
-        conn.query(data, (err, results) => {
+
+module.exports = async (query, values = []) => {
+    return new Promise((resolve, reject) => {
+        conn.query(query, values, (err, results) => {
             if (err) {
                 reject(err);
                 return;
-            } else { 
+            } else {
                 resolve(results);
-                console.log('Connected');
+            
             }
         });
     });

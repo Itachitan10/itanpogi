@@ -1,8 +1,3 @@
-
-
-
-
- 
 var section = "";
 var count = 0;
 var allitem = [
@@ -30,13 +25,13 @@ allitem.forEach((item, index) => {
         <img src="${item.img}" alt="${item.name}">
         <h3>${item.name}</h3>
         <p>PESOS :${item.price}</p>
+        <button class="checkout" data-index="${index}">checkout</button>
         <button class="add" data-index="${index}">Add to Cart</button>
       </div><br>
-  `;
+  `
 });
 
 document.getElementById("menu").innerHTML = section;
-
 
 var hol = document.querySelectorAll(".add");
 
@@ -53,46 +48,28 @@ hol.forEach((btn) => {
           price: allitem[index1].price,
         };
         document.getElementById("count").innerHTML = count;
-
         
-
-
-      
-
-
-        fetch("http://localhost:3000/add", {
+        fetch("http://localhost:3000/cart_items", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(item2),
         })
-          .then((res) => res.json())
-          .catch((error) => console.error("Error:", error));
-      } else {
-        alert("Item not found");
+          .then((res) => {
+            if (!res.ok) {
+
+              throw new Error("Network response was not ok");
+            }
+            return res.json(); 
+          })
+          .then((data) => {
+            console.log("Success:", data); 
+          })
+          .catch((error) => {
+            console.error("Error:", error); 
+          });
       }
     }
   });
-});
-
-
-
-
-
-fetch('http://localhost:3000/dashboard', {
-  method: 'GET',
-  credentials: 'include'
-})
-.then(response => {
-  if (!response.ok) {
-      throw new Error('Unauthorized');
-  }
-  return response.json();
-})
-.then(data => {
-  console.log(data.message); 
-})
-.catch(error => {
-  console.error('Error:', error);
 });
