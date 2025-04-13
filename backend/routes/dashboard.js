@@ -1,9 +1,11 @@
 const express = require("express");
 const routes = express.Router();
+const path = require("path");
 
 routes.get("/dashboard", (req, res) => {
-  res.render("dash");
+  res.sendFile(path.join(__dirname,"/frontend/html/dash.html"))
 });
+
 routes.use(express.json());
 const conn = require("../database/db");
 

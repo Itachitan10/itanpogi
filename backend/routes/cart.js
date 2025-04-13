@@ -1,8 +1,7 @@
 const express = require("express");
 const routes = express.Router();
-
 routes.get("/cart", (req, res) => {
-  res.render("cart");
+  res.sendFile(path.join(__dirname,"/frontend/html/cart.html"))
 });
 
 const conn = require('../database/db')
