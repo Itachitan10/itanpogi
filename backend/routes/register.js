@@ -4,7 +4,7 @@ const routes = express.Router();
 const conn = require("../database/db");
 
 routes.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname,"/frontend/html/register.html"))
+  res.sendFile(path.join(__dirname, '../frontend/html/register.html'))
 });
 
 const  sql1 = [];

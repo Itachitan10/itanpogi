@@ -3,7 +3,7 @@ const routes = express.Router();
 const path = require("path");
 
 routes.get("/dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname,"/frontend/html/dash.html"))
+  res.sendFile(path.join(__dirname, '../frontend/html/dash.html'))
 });
 
 routes.use(express.json());
