@@ -40,9 +40,14 @@ const cart = require("./backend/routes/cart");
 app.use("/", front);
 app.use("/", login);
 app.use("/", cart);
-app.use("/", dash)
+app.use('/', dash)
 
 // server
+app.get("/", (req, res) => {
+  res.send("Welcome kay ItanPogi API 😎");
+  // OR:
+  // res.sendFile(path.join(__dirname, "frontend/html/index.html"));
+});
 
 
 
