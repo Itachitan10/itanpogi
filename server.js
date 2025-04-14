@@ -42,13 +42,13 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/register.html"));
 });
 
-app.get("/login", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/login.html"));
 });
-app.get("/dashboard", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/dash.html"));
 });
-app.get("/cart", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/cart.html"));
 });
 
