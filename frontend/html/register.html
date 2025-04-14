@@ -38,20 +38,20 @@
 
       if (!username || !passowrod) {
         alert("fill up all form");
-        return (window.location.href = "register.html");
+        return (window.location.href = "/register");
       }
       try {
-        await fetch("http://localhost:3000/alluser", {
+        await fetch("/alluser", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username: username, password: passowrod }),
         });
 
         alert("you now regster!");
-        // window.location.href = "login.html";
+        window.location.href = "/login";
       } catch {
         console.error("eroor inserting data");
-        // window.location.href = "resgister.html";
+        window.location.href = "/resgister";
       }
     }
   </script>
