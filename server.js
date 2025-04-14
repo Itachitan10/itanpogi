@@ -38,7 +38,7 @@ app.use("/", cart);
 app.use('/', dash)
 
 // server
-app.get("/register", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/register.html"));
 });
 
