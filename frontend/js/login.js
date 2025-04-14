@@ -23,7 +23,7 @@
   
       } else {
         setTimeout(() => {
-          window.location.href='http://localhost:3000/dashboard'
+          window.location.href='/dashboard'
         }, 2000);
         alert("hellow welcome ", )
   
