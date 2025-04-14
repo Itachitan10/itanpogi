@@ -8,7 +8,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
     "ejs": "^3.1.10",
@@ -18,5 +17,6 @@
     "mysql2": "^3.14.0",
     "path": "^0.12.7",
     "routes": "^2.1.0"
-  }
+  },
+  "description": ""
 }

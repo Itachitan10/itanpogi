@@ -3,11 +3,11 @@ const routes =express.Router()
 const path = require('path')
 
 const conn = require('../database/db');
-const { render } = require("ejs");
+
 
 // login page
 routes.get("/login", (req, res) => {
-    render('login')
+    res.render('login')
 });
 
 // login comparision database
@@ -15,8 +15,6 @@ routes.post('/login1' , async (req, res )=>{
     const {username1 , password1} = req.body;
 
     try{
-
-    
 
     const result = await conn('SELECT * FROM information WHERE username = ? AND password = ? ', [username1 , password1])
 
