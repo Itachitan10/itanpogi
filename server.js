@@ -22,7 +22,7 @@ app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 app.set("views", path.join(__dirname, "frontend/html"));
 app.use("/css", express.static(path.join(__dirname, "frontend/css")));
-app.use("/html", express.static(path.join(__dirname, "frontend/html")));
+app.use("/html", express.static(path.join(__dirname, "frontend/html"))); 
 app.use("/js", express.static(path.join(__dirname, "frontend/js")));
 
 // import routes
