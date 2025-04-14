@@ -2,7 +2,7 @@
 
 var count1 = 0;
 totalr = document.getElementById("total-price");
-fetch("http://localhost:3000/item_cart")
+fetch("/item_cart")
   .then((response) => response.json())
   .then((data) => {
     form(data);
@@ -62,7 +62,7 @@ function form(data) {
   
   
         selectedItems.forEach(itemId => {
-          fetch(`http://localhost:3000/delete2/${itemId}`, { method: "DELETE" })
+          fetch(`/delete2/${itemId}`, { method: "DELETE" })
             .then(response => response.json())
             .then(data => console.log(`Item ${itemId} deleted:`, data))
             .catch(error => console.error("Error deleting item:", error));
@@ -113,7 +113,7 @@ function form(data) {
 
 // this function is delete one item
 function delete1(id) {
-  fetch(`http://localhost:3000/delete/${id}`, {
+  fetch(`/delete/${id}`, {
     method: "DELETE",
   })
     .then((response) => {

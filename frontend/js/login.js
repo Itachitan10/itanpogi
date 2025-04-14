@@ -9,7 +9,7 @@
     document.getElementById('message').innerText ='pls enter password or username';
   }else
     try {
-    response =  fetch("http://localhost:3000/login1", {
+    response =  fetch("/login1", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -49,7 +49,7 @@ hol.forEach((btn) => {
         };
         document.getElementById("count").innerHTML = count;
         
-        fetch("http://localhost:3000/cart_items", {
+        fetch("/cart_items", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
