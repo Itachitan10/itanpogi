@@ -38,7 +38,7 @@
 
       if (!username || !passowrod) {
         alert("fill up all form");
-        return (window.location.href = "/register");
+        return (window.location.href = "/login");
       }
       try {
         await fetch("/alluser", {
