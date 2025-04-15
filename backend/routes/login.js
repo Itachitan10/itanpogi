@@ -1,44 +1,66 @@
-const express = require ("express")
-const routes =express.Router()
-const path = require('path')
+const express = require("express");
+const routes = express.Router();
+const path = require("path");
 
-const conn = require('../database/db');
-
+const conn = require("../database/db");
 
 // login page
 routes.get("/login", (req, res) => {
-    res.render('login')
+  res.render("login");
 });
 
 // login comparision database
-routes.post('/login1' , async (req, res )=>{
-    const {username1 , password1} = req.body;
+routes.post("/login1", async (req, res) => {
+  const { username1, password1 } = req.body;
 
-    try{
+  try {
+    const result = await conn(
+      "SELECT * FROM information WHERE username = ? AND password = ? ",
+      [username1, password1]
+    );
 
-    const result = await conn('SELECT * FROM information WHERE username = ? AND password = ? ', [username1 , password1])
+    if (!username1 || !password1) {
+      console.log("user name and password is not defind");
+    } else {
+      if (result.length > 0) {
+        req.session.username = result[0].username;
 
-    if (!username1 || !password1){ 
-        console.log('user name and password is not defind')
-    }else{ 
-        if(result.length > 0 ){
-        
-            console.log('Login successful:', result[0]);
-            return res.status(200).json({ message: 'Login successful', user: result[0] });
-            return;
-        }else{
-            console.log('Invalid credentials');
-            return res.status(401).json({ message: 'Invalid username or password' });
-        }
+        console.log("Login successful:", result[0]);
+        return res
+          .status(200)
+          .json({ message: "Login successful", user: result[0] });
+        return;
+      } else {
+        console.log("Invalid credentials");
+        return res
+          .status(401)
+          .json({ message: "Invalid username or password" });
+      }
     }
+  } catch {
+    console.error("Database error:");
+    return res.status(500).json({ message: "Server error" });
+  }
+});
 
-}catch{ 
-    console.error('Database error:', err);
-    return res.status(500).json({ message: 'Server error' });
+routes.get("/dash", (req, res) => {
+    console.log("Session username:", req.session.username);
+  
+    res.json({ username: req.session.username });
+  });
+  
 
-}
-    
-})
+  routes.get('/logout', (req, res) => { 
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(400).send({ msg: 'Error logging out' });
+        }
+        res.clearCookie('connect.sid');
 
+        return res.status(200).send({ msg: 'Logged out successfully' });
+    });
+});
+
+  
 
 module.exports = routes;

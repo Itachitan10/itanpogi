@@ -1,14 +1,19 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 app.use(express.json());
+const session = require("express-session");
 
+app.use(
+  session({
+    secret: "secret-key", // palitan mo ito ng mas secure na string sa production
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 }, // optional: 1 hour
+  })
+);
 
-
-
-
-// productdatabsae 
+// productdatabsae
 // const itachitan = require("./backend/routes/product");
 // itachitan.createuser()
 
@@ -17,12 +22,11 @@ const path = require("path");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 app.set("views", path.join(__dirname, "frontend/html"));
 app.use("/css", express.static(path.join(__dirname, "frontend/css")));
-app.use("/html", express.static(path.join(__dirname, "frontend/html"))); 
+app.use("/html", express.static(path.join(__dirname, "frontend/html")));
 app.use("/js", express.static(path.join(__dirname, "frontend/js")));
 
 // import routes
@@ -35,7 +39,7 @@ const cart = require("./backend/routes/cart");
 app.use("/", front);
 app.use("/", login);
 app.use("/", cart);
-app.use('/', dash)
+app.use("/", dash);
 
 // server
 app.get("/", (req, res) => {
@@ -52,7 +56,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/cart.html"));
 });
 
- const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, (err) => {
   if (err) throw err;
   console.log("Server is running on port 3000");

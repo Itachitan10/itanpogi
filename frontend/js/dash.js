@@ -18,6 +18,61 @@ var allitem = [
   },
 ];
 
+
+
+// dito ako nag lalagay ng usernmae at i lalay ko sa data base
+
+function displayname(){ 
+  fetch('/dash')
+// fetch('http://localhost:3000/dash')
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return res.text();
+    }
+  })
+  .then(data => {
+    if (typeof data === 'object') {
+      console.log('Username from session:', data.username);
+      document.getElementById('username').innerHTML = data.username
+
+    } else {
+      console.error('Error:', data); 
+    }
+  })
+  .catch(err => console.error('Error:', err));
+
+
+}
+displayname()
+
+
+// logout button to 
+document.getElementById('logout').addEventListener("click", () => { 
+  console.log('hellow');
+  fetch('/logout')
+  // fetch('http://localhost:3000/logout')
+    .then(res => { 
+      if (!res.ok) { 
+        return res.text().then(text => { throw new Error(text); });
+      }
+      return res.json(); 
+    })
+    .then(data => { 
+      console.log('Successful logout:', data.msg);
+      setTimeout(() => {
+        window.location.href = '/register'; 
+        // window.location.href = 'http://localhost:3000/register'; 
+      }, 1000);
+    })
+    .catch(err => console.error("Failed logout:", err.message));
+});
+
+
+
+
+
 allitem.forEach((item, index) => {
   section += `
     <div class="menu-items">
@@ -48,8 +103,8 @@ hol.forEach((btn) => {
           price: allitem[index1].price,
         };
         document.getElementById("count").innerHTML = count;
-        
-        fetch("/cart_items", {
+        fetch("/cart_items",{
+        // fetch("http://localhost:3000/cart_items", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -73,3 +128,6 @@ hol.forEach((btn) => {
     }
   });
 });
+
+
+
