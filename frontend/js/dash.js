@@ -1,3 +1,14 @@
+const toggleBtn = document.getElementById('menu-toggle');
+const navLinks = document.getElementById('nav-links');
+
+toggleBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  toggleBtn.classList.toggle('open');
+
+})
+
+
+
 var section = "";
 var count = 0;
 var allitem = [
@@ -62,7 +73,7 @@ document.getElementById('logout').addEventListener("click", () => {
       console.log('Successful logout:', data.msg);
       setTimeout(() => {
         window.location.href = '/register'; 
-
+        // window.location.href = 'http://localhost:3000/register'; 
       }, 1000);
     })
     .catch(err => console.error("Failed logout:", err.message));
@@ -103,7 +114,7 @@ hol.forEach((btn) => {
         };
         document.getElementById("count").innerHTML = count;
         fetch("/cart_items",{
-      
+        // fetch("http://localhost:3000/cart_items", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

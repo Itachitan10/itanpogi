@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coffee Shop Dashboard</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo">
-        <span style="color: rgba(238, 251, 238, 0.5)">itans</span>
-        Coffee Shop
-      </div>
-
-      <!-- Toggle menu icon -->
-      <input type="checkbox" id="nav-toggle" hidden />
-      <label for="nav-toggle" class="menu-icon">&#9776;</label>
-
-      <!-- NAV LINKS (unchanged class) -->
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li>
-          <a href="/cart">Cart <span id="count">0</span></a>
-        </li>
-      </ul>
-
-      <!-- USERNAME and LOGOUT (unchanged IDs) -->
-      <div class="user-section">
-        <p id="username"></p>
-        <button class="logout" id="logout">logout</button>
-      </div>
-    </nav>
-
-    <section id="home" class="home-section">
-      <h1>Welcome to Our Coffee Shop!</h1>
-      <p style="color: white">Enjoy the best coffee in town.</p>
-    </section>
-
-    <section id="menu"></section>
-    <div class="cart" id="cart"></div>
-
-    <div class="about-container">
-      <h1>About Us</h1>
-      <p>
-        Welcome to our website! We are passionate about providing the best
-        services to our customers. Our mission is to bring quality and
-        satisfaction in everything we do.
-      </p>
-      <p class="contact">Contact us: wwww.christian@gmail.com</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee Shop Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <span style="color: rgba(238, 251, 238, 0.5)">itans</span> Coffee Shop
     </div>
 
-    <footer class="footer">
-      <p>&copy; 2025 Coffee Shop. All Rights Reserved.</p>
-    </footer>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-    <script type="module" src="js/dash.js"></script>
-  </body>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li>
+        <a href="/cart">Cart <span id="count">0</span></a>
+      </li>
+      <li><p id="username"></p></li>
+      <li><button class="logout" id="logout">Logout</button></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="home-section">
+    <h1>Welcome to Our Coffee Shop!</h1>
+    <p style="color: white">Enjoy the best coffee in town.</p>
+  </section>
+
+  <section id="menu"></section>
+  <div class="cart" id="cart"></div>
+
+  <div class="about-container">
+    <h1>About Us</h1>
+    <p>
+      Welcome to our website! We are passionate about providing the best services to our customers.
+      Our mission is to bring quality and satisfaction in everything we do.
+    </p>
+    <p class="contact">Contact us: wwww.christian@gmail.com</p>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 Coffee Shop. All Rights Reserved.</p>
+  </footer>
+
+  <script type="module" src="../js/dash.js"></script>
+</body>
 </html>
