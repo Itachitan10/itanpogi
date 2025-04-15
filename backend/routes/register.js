@@ -13,9 +13,9 @@ routes.post("/alluser", async(req, res) => {
  const {username , password } = req.body;
 
   console.log(username , password);
-  const sql1 = await conn(`INSERT INTO information (username , password) VALUES("${username}" , "${password}")`);
+  const sql1 = await conn(`INSERT INTO information(username , password) VALUES("${username}" , "${password}")`);
 
-  if(sql){ 
+  if(sql1){ 
     res.send('successfull  inserting data')
   }else{ 
     res.send('failed inserting data')
