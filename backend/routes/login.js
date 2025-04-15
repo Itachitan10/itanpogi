@@ -14,14 +14,9 @@ routes.post("/login1", async (req, res) => {
   const { username1, password1 } = req.body;
 
   try {
-    const result = await conn(
-      "SELECT * FROM information WHERE username = ? AND password = ? ",
-      [username1, password1]
-    );
+    const result = await conn( "SELECT * FROM information WHERE username = ? AND password = ? ", [username1, password1])
 
-    if (!username1 || !password1) {
-      console.log("user name and password is not defind");
-    } else {
+
       if (result.length > 0) {
         req.session.username = result[0].username;
 
@@ -36,7 +31,7 @@ routes.post("/login1", async (req, res) => {
           .status(401)
           .json({ message: "Invalid username or password" });
       }
-    }
+    
   } catch {
     console.error("Database error:");
     return res.status(500).json({ message: "Server error" });

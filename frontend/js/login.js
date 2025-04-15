@@ -8,9 +8,8 @@
     alert('pls inter username and password');
     document.getElementById('message').innerText ='pls enter password or username';
   }else
-    try { 
-     response =  fetch("/login1", {
-    // response =  fetch("http://localhost:3000/login1", {
+    try {
+    response =  fetch("/login1", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

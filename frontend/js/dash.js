@@ -24,7 +24,6 @@ var allitem = [
 
 function displayname(){ 
   fetch('/dash')
-// fetch('http://localhost:3000/dash')
   .then(res => {
     if (res.ok) {
       return res.json();
@@ -52,7 +51,7 @@ displayname()
 document.getElementById('logout').addEventListener("click", () => { 
   console.log('hellow');
   fetch('/logout')
-  // fetch('http://localhost:3000/logout')
+
     .then(res => { 
       if (!res.ok) { 
         return res.text().then(text => { throw new Error(text); });
@@ -63,7 +62,7 @@ document.getElementById('logout').addEventListener("click", () => {
       console.log('Successful logout:', data.msg);
       setTimeout(() => {
         window.location.href = '/register'; 
-        // window.location.href = 'http://localhost:3000/register'; 
+
       }, 1000);
     })
     .catch(err => console.error("Failed logout:", err.message));
@@ -104,7 +103,7 @@ hol.forEach((btn) => {
         };
         document.getElementById("count").innerHTML = count;
         fetch("/cart_items",{
-        // fetch("http://localhost:3000/cart_items", {
+      
           method: "POST",
           headers: {
             "Content-Type": "application/json",
