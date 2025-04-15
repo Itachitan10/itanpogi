@@ -10,21 +10,29 @@
     <nav class="navbar">
       <div class="logo">
         <span style="color: rgba(238, 251, 238, 0.5)">itans</span>
-        Coffee Shop ☕
+        Coffee Shop
       </div>
+
+      <!-- Toggle menu icon -->
+      <input type="checkbox" id="nav-toggle" hidden />
+      <label for="nav-toggle" class="menu-icon">&#9776;</label>
+
+      <!-- NAV LINKS (unchanged class) -->
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#menu">Menu</a></li>
         <li>
-          <a href="/cart"
-            >Cart
-            <span id="count">0</span>
-          </a>
+          <a href="/cart">Cart <span id="count">0</span></a>
         </li>
+      </ul>
+
+      <!-- USERNAME and LOGOUT (unchanged IDs) -->
+      <div class="user-section">
         <p id="username"></p>
         <button class="logout" id="logout">logout</button>
-      </ul>
+      </div>
     </nav>
+
     <section id="home" class="home-section">
       <h1>Welcome to Our Coffee Shop!</h1>
       <p style="color: white">Enjoy the best coffee in town.</p>
@@ -32,6 +40,7 @@
 
     <section id="menu"></section>
     <div class="cart" id="cart"></div>
+
     <div class="about-container">
       <h1>About Us</h1>
       <p>
@@ -42,12 +51,10 @@
       <p class="contact">Contact us: wwww.christian@gmail.com</p>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
       <p>&copy; 2025 Coffee Shop. All Rights Reserved.</p>
     </footer>
-  </body>
 
-  <script></script>
-  <script type="module" src="js/dash.js"></script>
+    <script type="module" src="js/dash.js"></script>
+  </body>
 </html>
