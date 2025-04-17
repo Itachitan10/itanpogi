@@ -1,49 +1,66 @@
 const express = require("express");
 const routes = express.Router();
-// const path = require("path");
-
-routes.get("/dashboard", (req, res) => {
-  res.render('dash')
-});
-
-routes.use(express.json());
 const conn = require("../database/db");
 
-const sql1 = [];
+routes.get("/dashboard", (req, res) => {
+  res.render('dash');
+});
 
-//   sending item to the cart page
 routes.post("/cart_items", async (req, res) => {
+  const userId = req.session.userId;
   const { price, img, name } = req.body;
-  const sql1 = await conn("INSERT INTO product (price, img, name) VALUES (?, ?, ?)",
-  [price, img, name]);
-  try {
-    if (!sql1) {
-      console.log(" Failed to add item to car");
 
-      return res.status(400).json({ message: "Failed to add item to cart" });
-    } else {
-      console.log(" sucess add item to car");
+  if (userId) {
+    try {
+      const result = await conn("INSERT INTO product (price, img, name, user_id) VALUES (?, ?, ?, ?)", [price, img, name, userId]);
 
-      return res.status(200).json({ message: "Item added to cart" });
+      if (!result) {
+        console.log('Hindi nagtagumpay ang pagdagdag ng item sa cart');
+        return res.status(400).json({ message: "Hindi matagumpay na idinagdag ang item sa cart" });
+      }
+
+
+      res.cookie('userId', userId, {
+        httpOnly: true, 
+        maxAge: 24 * 60 * 60 * 1000, 
+        secure: process.env.NODE_ENV === 'production', 
+      });
+
+      console.log("Tagumpay ang pagdagdag ng item sa cart");
+      return res.status(200).json({ message: "Item idinagdag sa cart" });
+
+    } catch (err) {
+      console.error("Error sa pag-insert ng item sa cart:", err);
+      return res.status(500).json({ message: "Server error" });
     }
-  } catch {
-    console.log("error");
+  } else {
+    console.log('Walang user na naka-log in');
+    return res.status(401).json({ message: "Walang user na naka-log in" });
   }
 });
 
-// api cartitem
+routes.get('/item_cart', async (req, res) => {
+  const id = req.cookies.userId;  
 
-routes.get("/item_cart", async (req, res) => {
   try {
-    const items = await conn("SELECT * FROM product");
-    res.json(items);
+    if (id) {
+      const users_unique_item = await conn("SELECT * FROM product WHERE user_id = ?", [id]);
+
+      if (users_unique_item.length > 0) {
+        console.log('successful lna kinuha ang mga unique na item');
+        return res.json(users_unique_item);
+      } else {
+        console.log('Walang item na nahanap para sa user na ito');
+        return res.status(404).json({ message: "Walang item na nahanap" });
+      }
+    } else {
+      console.log('Walang user na nasa cookies');
+      return res.status(401).json({ message: "Walang user na nasa cookies" });
+    }
   } catch (err) {
-    console.error("Database error:", err);
+    console.error('Error sa pagkuha ng mga item sa cart:', err);
+    return res.status(500).json({ message: "Server error" });
   }
 });
-
-// routes.get('/test_api', (req ,res)=>{
-//     res.send(cartItems)
-// })
 
 module.exports = routes;

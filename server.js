@@ -1,8 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const app = express();
+const app = express(); 
+const cookieParser = require("cookie-parser")
 app.use(express.json());
 const session = require("express-session");
+
+
+app.use(cookieParser())
 
 app.use(
   session({

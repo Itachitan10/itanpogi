@@ -32,29 +32,35 @@ var allitem = [
 
 // dito ako nag lalagay ng usernmae at i lalay ko sa data base
 
-function displayname(){ 
+function displayname() {
   fetch('/dash')
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return res.text();
-    }
-  })
-  .then(data => {
-    if (typeof data === 'object') {
-      console.log('Username from session:', data.username);
-      document.getElementById('username').innerHTML = data.username
-
-    } else {
-      console.error('Error:', data); 
-    }
-  })
-  .catch(err => console.error('Error:', err));
-
-
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        console.error('Failed to fetch data');
+      }
+    })
+    .then(data => {
+      if (typeof data === 'object') {
+        console.log('Username from session:', data.username);
+        document.getElementById('username').innerHTML = data.username;
+        
+      } else {
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 2000);
+        console.error('Error:', data);
+      }
+    })
+    .catch(err => {
+      console.error('Error:', err)
 }
-displayname()
+  );
+}
+
+displayname();
+
 
 
 // logout button to 
@@ -71,7 +77,7 @@ document.getElementById('logout').addEventListener("click", () => {
     .then(data => { 
       console.log('Successful logout:', data.msg);
       setTimeout(() => {
-        window.location.href = '/register'; 
+        window.location.href = '/login'; 
         // window.location.href = 'http://localhost:3000/register'; 
       }, 1000);
     })
@@ -97,8 +103,11 @@ allitem.forEach((item, index) => {
 
 document.getElementById("menu").innerHTML = section;
 
-var hol = document.querySelectorAll(".add");
 
+
+// adding to cart
+
+var hol = document.querySelectorAll(".add");
 hol.forEach((btn) => {
   btn.addEventListener("click", function (e) {
     var index1 = e.target.dataset.index;
@@ -112,8 +121,10 @@ hol.forEach((btn) => {
           price: allitem[index1].price,
         };
         document.getElementById("count").innerHTML = count;
-        fetch("/cart_items",{
-        // fetch("http://localhost:3000/cart_items", {
+
+        
+        // fetch("/cart_items",{
+        fetch("http://localhost:3000/cart_items", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
