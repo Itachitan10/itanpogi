@@ -67,7 +67,6 @@ function form(data) {
         selectedItems.forEach(itemId => {
 
           fetch(`/delete2/${itemId}`, { method: "DELETE" })
-
           // fetch(`http://localhost:3000/delete2/${itemId}`, { method: "DELETE" })
             .then(response => response.json())
             .then(data => console.log(`Item ${itemId} deleted:`, data))
