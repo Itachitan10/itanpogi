@@ -10,16 +10,26 @@
   <h1 style="text-align: center;">Menu</h1>
   <div id="menu"  class="menu-container"></div>
 
-  <button id="del">delete</button>
-  
-
   <h2 style="text-align: center;">Cart</h2>
   <div id="cart-items" class="cart-container" style="text-align: center;"></div>
-  <p id="total-price"> TOTAL PRICE : </p>
+  
+  
+  <div class="cart-actions">
+    <button id="del">Delete</button>
+    <button id="checkoutall_items">Checkout All</button>
+  </div>
+
+  
+
+
+
+
+  <p id="total-price" style="text-align: center; font-weight: bold; font-size: 20px;"> 
+    TOTAL PRICE :
+  </p>
+  <div id="price-table" style="display: flex; justify-content: center;"></div>
+  
 
   <script src="js/cart.js"></script>
 </body>
-</html>
-
-
-<!-- change cart.css -->
+</html> 

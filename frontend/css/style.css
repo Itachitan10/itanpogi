@@ -133,7 +133,9 @@ html, body {
 .home-section {
   text-align: center;
   padding: 200px 20px;
-  background-image: url('https://th.bing.com/th/id/OIP.wVG4-Is4zPdMhZtysrub0QHaEK?rs=1&pid=ImgDetMain');
+  /* background-image: url('https://th.bing.com/th/id/OIP.wVG4-Is4zPdMhZtysrub0QHaEK?rs=1&pid=ImgDetMain');
+   */
+   background-image: url('https://th.bing.com/th/id/OIP.80Na2cgB_RJs19N1YLeKHwHaEY?rs=1&pid=ImgDetMain');
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;

@@ -5,9 +5,24 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    background-image: url('https://th.bing.com/th/id/OIP.80Na2cgB_RJs19N1YLeKHwHaEY?rs=1&pid=ImgDetMain');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.9; 
+    
 }
 
+
+
+
+
+
+
+
 .box { 
+
+      
+    background-color: #abaaac;
     padding-top: 100px;
     border: 1px solid black;
     width: 250px;
@@ -20,6 +35,7 @@ body {
     padding-bottom: 120px;
 
 }
+
 
 input {
     width: 90%;
@@ -42,14 +58,20 @@ button {
     margin-top: 10px;
 }
 
+
+
 button:hover {
-    background-color: white;
+    background-color: rgb(221, 21, 24);
     color: black;
     font-weight: bolder;
+    transition-duration: 0.9s;
+    border-radius: 50px;
+
 
 }
 input:hover{ 
-    background-color: #c1d8c9;
+    transition-duration: 0.9s;
+    background-color: #c1d8c8;
     color: rgb(30, 24, 24);
     font-size: 16px;
     border-radius: 5px;

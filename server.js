@@ -38,6 +38,10 @@ const front = require("./backend/routes/register");
 const login = require("./backend/routes/login");
 const dash = require("./backend/routes/dashboard");
 const cart = require("./backend/routes/cart");
+const checkout = require('./backend/routes/ckoutpage')
+
+
+
 
 // all routes
 app.use("/", front);
@@ -45,6 +49,7 @@ app.use("/", login);
 app.use("/", cart);
 app.use("/", dash);
 
+app.use('/', checkout)
 // server
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/register.html"));
@@ -58,6 +63,11 @@ app.get("/", (req, res) => {
 });
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/cart.html"));
+});
+
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/frontend/html/ckoutpage.html"));
 });
 
 const port = process.env.PORT || 3000;

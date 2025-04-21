@@ -1,12 +1,12 @@
-const toggleBtn = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
 
-toggleBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-  toggleBtn.classList.toggle('open');
+
+const toggleBtn = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+toggleBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  toggleBtn.classList.toggle("open");
 });
-
-
 
 var section = "";
 var count = 0;
@@ -28,66 +28,12 @@ var allitem = [
   },
 ];
 
-
-
 // dito ako nag lalagay ng usernmae at i lalay ko sa data base
 
-function displayname() {
-  fetch('/dash')
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        console.error('Failed to fetch data');
-      }
-    })
-    .then(data => {
-      if (typeof data === 'object') {
-        console.log('Username from session:', data.username);
-        document.getElementById('username').innerHTML = data.username;
-        
-      } else {
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 2000);
-        console.error('Error:', data);
-      }
-    })
-    .catch(err => {
-      console.error('Error:', err)
-}
-  );
-}
-
-displayname();
 
 
 
-// logout button to 
-document.getElementById('logout').addEventListener("click", () => { 
-  console.log('hellow');
-  fetch('/logout')
-
-    .then(res => { 
-      if (!res.ok) { 
-        return res.text().then(text => { throw new Error(text); });
-      }
-      return res.json(); 
-    })
-    .then(data => { 
-      console.log('Successful logout:', data.msg);
-      setTimeout(() => {
-        window.location.href = '/login'; 
-        // window.location.href = 'http://localhost:3000/register'; 
-      }, 1000);
-    })
-    .catch(err => console.error("Failed logout:", err.message));
-});
-
-
-
-
-
+// display on dasboard page
 allitem.forEach((item, index) => {
   section += `
     <div class="menu-items">
@@ -95,18 +41,67 @@ allitem.forEach((item, index) => {
         <img src="${item.img}" alt="${item.name}">
         <h3>${item.name}</h3>
         <p>PESOS :${item.price}</p>
-        <button class="checkout" data-index="${index}">checkout</button>
+        <button id="checkout_btn" class="checkout" data-index="${index}">checkout</button>
         <button class="add" data-index="${index}">Add to Cart</button>
       </div><br>
-  `
+  `;
 });
-
 document.getElementById("menu").innerHTML = section;
+
+// checkout page
+
+
+  var btn_check = document.querySelectorAll("#checkout_btn");
+  
+  btn_check.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      var unique_index = e.target.dataset.index;
+
+      if (confirm('Are you sure to check out?')) {
+        const dataindx = allitem[unique_index];
+
+        // Save selected item to localStorage
+        localStorage.setItem('selectedItem', JSON.stringify(dataindx));
+        // Redirect to checkout page
+
+        setTimeout(() => {
+          window.location.href = "/checkout";   
+          // window.location.href = "http://localhost:3000/checkout";   
+        }, 3000);
+       
+      }
+    });
+  });
+
+
+
+
+
+    // fetch('http://localhost:3000/checkout',{ 
+    //   method :  'POST',
+    //   headers :{ 
+    //     "Content-Type": "application/json",
+    //   },
+    //    body: JSON.stringify(dataindx)
+      
+    // }).then(res =>{ 
+    //   if(!res.ok){ 
+    //     throw new Error("Network response was not ok");
+    //   }else
+    //   res.json()
+    // }).then(data =>{ 
+    //   console.log('successfull inserting data', data);
+      
+    // }).catch(err =>{console.error('error inserting data' ,err);
+    // })
+
+
+
+
 
 
 
 // adding to cart
-
 var hol = document.querySelectorAll(".add");
 hol.forEach((btn) => {
   btn.addEventListener("click", function (e) {
@@ -121,9 +116,7 @@ hol.forEach((btn) => {
           price: allitem[index1].price,
         };
         document.getElementById("count").innerHTML = count;
-
-        
-        fetch("/cart_items",{
+        fetch("/cart_items", {
         // fetch("http://localhost:3000/cart_items", {
           method: "POST",
           headers: {
@@ -133,16 +126,15 @@ hol.forEach((btn) => {
         })
           .then((res) => {
             if (!res.ok) {
-
               throw new Error("Network response was not ok");
             }
-            return res.json(); 
+            return res.json();
           })
           .then((data) => {
-            console.log("Success:", data); 
+            console.log("Success:", data);
           })
           .catch((error) => {
-            console.error("Error:", error); 
+            console.error("Error:", error);
           });
       }
     }
@@ -150,4 +142,54 @@ hol.forEach((btn) => {
 });
 
 
+function displayname() {
+  // fetch("http://localhost:3000/dash")
+    fetch("/dash")
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        console.error("Failed to fetch data");
+      }
+    })
+    .then((data) => {
+      if (typeof data === "object") {
+        console.log("Username from session:", data.username);
+        document.getElementById("username").innerHTML = data.username;
+      } else {
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 2000);
+        console.error("Error:", data);
+      }
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+    });
+}
 
+displayname();
+
+
+
+// logout button to
+document.getElementById("logout").addEventListener("click", () => {
+  console.log("hellow");
+  fetch("/logout")
+    .then((res) => {
+      if (!res.ok) {
+        return res.text().then((text) => {
+          throw new Error(text);
+        });
+      }
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Successful logout:", data.msg);
+      setTimeout(() => {
+        window.location.href = '/login';
+        // window.location.href = 'http://localhost:3000/register';
+      }, 1000);
+    })
+    .catch((err) => console.error("Failed logout:", err.message));
+});

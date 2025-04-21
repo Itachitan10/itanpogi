@@ -43,13 +43,13 @@ routes.post("/cart_items", async (req, res) => {
 });
 
 routes.get("/item_cart", async (req, res) => {
-  const id = req.cookies.userId;
+  const id = req.session.userId; // ✔ ito tama
+
 
   try {
     if (id) {
       const users_unique_item = await conn(
-        "SELECT * FROM product WHERE user_id = ?",
-        [id]
+        "SELECT * FROM product WHERE user_id = ?",  [id]
       );
 
       if (users_unique_item.length > 0) {
@@ -69,4 +69,17 @@ routes.get("/item_cart", async (req, res) => {
   }
 });
 
+
+
+// checkout page
+
+routes.post('/checkout', (req , res)=>{ 
+  const { dataindx} =req.body ; 
+  if(dataindx){ 
+    res.send('sucessfull get data')
+  }else{ 
+
+    res.send('error get data')
+  }
+})
 module.exports = routes;
