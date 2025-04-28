@@ -1,16 +1,22 @@
 
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
 
-const toggleBtn = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
-
-toggleBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  toggleBtn.classList.toggle("open");
+  if (toggleBtn && navLinks) {
+    toggleBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      toggleBtn.classList.toggle("open");
+    });
+  } else {
+    console.error("Menu toggle or nav-links not found!");
+  }
 });
+
 
 var section = "";
 var count = 0;
-var allitem = [
+   export var allitem = [
   {
     img: "https://th.bing.com/th/id/OIP.cZr5G9HaDP59K1NNbyi1tAHaLb?rs=1&pid=ImgDetMain",
     name: "Espresso",
@@ -65,37 +71,13 @@ document.getElementById("menu").innerHTML = section;
         // Redirect to checkout page
 
         setTimeout(() => {
-          window.location.href = "/checkout";   
-          // window.location.href = "http://localhost:3000/checkout";   
-        }, 3000);
-       
+          // window.location.href = "http://localhost:3000/checkout";
+          window.location.href = "/checkout";
+        },3000);
+     
       }
     });
   });
-
-
-
-
-
-    // fetch('http://localhost:3000/checkout',{ 
-    //   method :  'POST',
-    //   headers :{ 
-    //     "Content-Type": "application/json",
-    //   },
-    //    body: JSON.stringify(dataindx)
-      
-    // }).then(res =>{ 
-    //   if(!res.ok){ 
-    //     throw new Error("Network response was not ok");
-    //   }else
-    //   res.json()
-    // }).then(data =>{ 
-    //   console.log('successfull inserting data', data);
-      
-    // }).catch(err =>{console.error('error inserting data' ,err);
-    // })
-
-
 
 
 
@@ -116,33 +98,43 @@ hol.forEach((btn) => {
           price: allitem[index1].price,
         };
         document.getElementById("count").innerHTML = count;
-        fetch("/cart_items", {
-        // fetch("http://localhost:3000/cart_items", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(item2),
-        })
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return res.json();
-          })
-          .then((data) => {
-            console.log("Success:", data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+        // fetch("/cart_items", {
+
+      
+        add(item2)
+
+
       }
     }
   });
 });
 
 
-function displayname() {
+export function add(item2){
+         fetch("/cart_items", {
+// fetch("http://localhost:3000/cart_items", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(item2),
+})
+  .then((res) => {
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return res.json();
+  })
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  })
+
+}
+
+ function displayname() {
   // fetch("http://localhost:3000/dash")
     fetch("/dash")
     .then((res) => {
@@ -192,4 +184,4 @@ document.getElementById("logout").addEventListener("click", () => {
       }, 1000);
     })
     .catch((err) => console.error("Failed logout:", err.message));
-});
+}); 

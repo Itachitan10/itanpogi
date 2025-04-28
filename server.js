@@ -4,6 +4,7 @@ const app = express();
 const cookieParser = require("cookie-parser")
 app.use(express.json());
 const session = require("express-session");
+app.use(express.static('public'))
 
 
 app.use(cookieParser())
@@ -32,6 +33,9 @@ app.set("views", path.join(__dirname, "frontend/html"));
 app.use("/css", express.static(path.join(__dirname, "frontend/css")));
 app.use("/html", express.static(path.join(__dirname, "frontend/html")));
 app.use("/js", express.static(path.join(__dirname, "frontend/js")));
+app.use("/html", express.static(path.join(__dirname, "./admin_folder/html")));
+app.use("/css", express.static(path.join(__dirname, "/admin_folder/css")));
+app.use("/js", express.static(path.join(__dirname, "./admin_folder/js")));
 
 // import routes
 const front = require("./backend/routes/register");
@@ -39,6 +43,8 @@ const login = require("./backend/routes/login");
 const dash = require("./backend/routes/dashboard");
 const cart = require("./backend/routes/cart");
 const checkout = require('./backend/routes/ckoutpage')
+const admin = require('./backend/routes/admin_dash_main')
+const chechout2 =require('./backend/routes/checkoutall')
 
 
 
@@ -48,8 +54,9 @@ app.use("/", front);
 app.use("/", login);
 app.use("/", cart);
 app.use("/", dash);
-
 app.use('/', checkout)
+app.use('/', admin)
+app.use('/', chechout2)
 // server
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/register.html"));
@@ -68,6 +75,9 @@ app.get("/", (req, res) => {
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/frontend/html/ckoutpage.html"));
+});
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/admin_folder/html/main.html"));
 });
 
 const port = process.env.PORT || 3000;

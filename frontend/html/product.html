@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders</title>
+  <link rel="stylesheet" href="../css/style1.css" />
+
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="../html/main.html">📊 Dashboard</a>
+    <a href="..//html/user.html">👤 Users</a>
+    <a href="../html/product.html">🛒 Products</a>
+    <a href="../html/orders.html">📦 Orders</a>
+    <a href="#">🚪 Logout</a>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1>product</h1><br>
+  
+    </div>
+    <p>List of orders will go here.</p>
+  </div>
+
+
+  <div>
+    
+  <h2>Add New Product</h2>
+  <input type="text" id="newProductName" placeholder="Product Name"><br>
+  <input type="number" id="newProductPrice" placeholder="Price"><br>
+  <input type="text" id="newProductImg" placeholder="Image URL"><br>
+  <button onclick="addNewProduct()">Add New Product</button>
+
+  <h2>Add Old Product</h2>
+  <select id="oldProductSelect"></select><br>
+  <button onclick="addOldProduct()">Add Old Product</button>
+
+  <h3>Product List</h3>
+  <div id="productList"></div>
+    
+  </div>
+
+  
+</body>
+</html>

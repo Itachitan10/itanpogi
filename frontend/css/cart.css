@@ -166,7 +166,7 @@ button:hover {
 }
 
 /* Buttons Design */
-button {
+/* button {
   padding: 10px 20px;
   box-shadow: 2px 2px 5px rgb(78, 77, 75);
   border-radius: 8px;
@@ -176,7 +176,7 @@ button {
   border: none;
   cursor: pointer;
   transition: 0.3s ease;
-}
+} */
 
 button:hover {
   background-color: #c73232;
@@ -195,4 +195,64 @@ button:hover {
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+}
+
+
+#dec1{ 
+  background-color: rgb(171, 98, 110);
+  color: black;
+  width: 5px;
+
+  border-radius: 10px;
+}
+
+#dec2{ 
+  background-color: rgb(171, 98, 110);
+  color: black;
+  width: 5px;
+
+  border-radius: 10px;
+}
+
+
+.checkoutOne{ 
+  background-color: rgb(152, 221, 15);
+  justify-content: center;
+  color: black;
+}
+
+
+
+
+.slider-thumb::before {
+  position: absolute;
+  content: "";
+  left: 30%;
+  top: 20%;
+  width: 450px;
+  height: 450px;
+  background: #17141d;
+  border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+  will-change: border-radius, transform, opacity;
+  animation: sliderShape 5s linear infinite;
+  display: block;
+  z-index: -1;
+  -webkit-animation: sliderShape 5s linear infinite;
+}
+@keyframes sliderShape{
+  0%,100%{
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
+  }
+  34%{
+      border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+    transform:  translate3d(0,5px,0) rotateZ(0.01deg);
+  }
+  50%{
+    transform: translate3d(0,0,0) rotateZ(0.01deg);
+  }
+  67%{
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60% ;
+    transform: translate3d(0,-3px,0) rotateZ(0.01deg);
+  }
 }
